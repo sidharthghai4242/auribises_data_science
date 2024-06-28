@@ -30,6 +30,14 @@ class Customer:
         self.age = input("Please enter your age:-")
         self.gender = input("Please enter your gender:-")
     
+    # def update_customer_details(self):
+    #     choice=input("Do you wish to update name (yes/no)? ")
+    #     self.name = input("Please enter your name:-")
+    #     self.phone = input("Please enter your phone:-")
+    #     self.email = input("Please enter your email:-")
+    #     self.age = input("Please enter your age:-")
+    #     self.gender = input("Please enter your gender:-")
+    
     def show(self):
         print("~~~~~~~~~~~~~~~~~~~~~~~Customer~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("Customer Id:- {}".format(self.cid))

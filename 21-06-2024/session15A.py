@@ -15,14 +15,14 @@ class Database:
         print("[Database] Cursor Created")
 
     def write(self, sql):
-        print("[Database] SQL statement",sql)
+        print("[Database] SQL statement:- \n",sql)
         self.cursor.execute(sql)
         self.connection.commit()
-        print("[Database] SQL statement executed successfully...")
+        print("\n[Database] SQL statement executed successfully...\n")
 
     def read(self, sql):
-        print("[Database] SQL statement")
+        print("[Database] SQL statement:- \n",sql)
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
-        print("[Database] SQL statement executed successfully...")
+        print("\n[Database] SQL statement executed successfully...\n")
         return result
