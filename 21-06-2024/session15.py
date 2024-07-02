@@ -27,16 +27,30 @@ class Customer:
         self.name = input("Please enter your name:-")
         self.phone = input("Please enter your phone:-")
         self.email = input("Please enter your email:-")
-        self.age = input("Please enter your age:-")
+        self.age = int(input("Please enter your age:-"))
         self.gender = input("Please enter your gender:-")
     
-    # def update_customer_details(self):
-    #     choice=input("Do you wish to update name (yes/no)? ")
-    #     self.name = input("Please enter your name:-")
-    #     self.phone = input("Please enter your phone:-")
-    #     self.email = input("Please enter your email:-")
-    #     self.age = input("Please enter your age:-")
-    #     self.gender = input("Please enter your gender:-")
+    def update_customer_details(self):
+        name = input("Enter Customer name (leave blank to keep current): ")
+        if name:
+            self.name = name
+
+        phone = input("Enter phone number (leave blank to keep current): ")
+        if phone:
+            self.phone = phone
+
+        email = input("Enter email (leave blank to keep current): ")
+        if email:
+            self.email = email
+
+        age = input("Enter age (leave blank to keep current): ")
+        if age:
+            self.age = int(age)
+
+        gender = input("Enter gender (leave blank to keep current): ")
+        if gender:
+            self.gender = gender
+        
     
     def show(self):
         print("~~~~~~~~~~~~~~~~~~~~~~~Customer~~~~~~~~~~~~~~~~~~~~~~~~~")

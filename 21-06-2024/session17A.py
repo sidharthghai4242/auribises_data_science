@@ -6,7 +6,7 @@ class Database:
         password = "Buddy99@ghai"
         host = "127.0.0.1"
         port = "3306"
-        database = "Patient"
+        database = "Doctor"
 
         self.connection = db.connect(user=username, password=password, host=host, database=database)
         print("[Database] Connection Created")

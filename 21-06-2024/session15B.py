@@ -21,15 +21,18 @@ def update_existing_customer():
     database=Database()
     
     rows=database.read(sql)
+    customer=Customer(cid=cid,name=rows[0][1],phone=rows[0][2],email=rows[0][3],age=rows[0][4],gender=rows[0][5],created_on=rows[0][6])
+
+    print("Customer to update: ")
     
-    columns=['cid' , 'name' , 'phone' , 'email' , 'age' , 'gender' , 'created_on']
-    if rows:
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
-        print(tabulate(rows,headers=columns,tablefmt='grid'))
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
-        print("Viewing customer by phone...\n")
-    else:
-        print("No such data exists")
+    customer.show()
+    customer.update_customer_details()
+    
+    sql ="update customers set name='{name}', phone='{phone}' , email='{email}', age={age}, gender='{gender}', created_on='{created_on}' where cid = {cid}".format_map(vars(customer))
+    
+    database.write(sql)
+    customer.show()
+    
     print("Updating existing customer...\n")
     # Code to update an existing customer goes here
 
