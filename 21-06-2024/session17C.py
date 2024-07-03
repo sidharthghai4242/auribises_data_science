@@ -16,6 +16,10 @@ def main():
         print("4. View Patient By phone")
         print("5. View Patient By PID")
         print("6. View all Patients")
+        print("7. Add new Consultation")
+        print("8. View all Consultations")
+        print("9. View patient Consultation")
+        print("10. View followups")
         print("0. To Quit App")
 
         choice = int(input("Enter Your choice: "))
@@ -45,7 +49,42 @@ def main():
             print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
             print(tabulate(rows,headers=columns,tablefmt='grid'))
             print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
-            pass
+        
+        elif choice == 7:
+            consultation=Consultation()
+            consultation.add_consultation_details()
+            sql="insert into consultation values(null,{pid},'{remarks}','{medicines}','{next_followup}','{created_on}')".format_map(vars(consultation))
+            db.write(sql)
+            print("Consultation created....")
+
+        elif choice == 8:
+            sql="select * from Consultation"
+            rows=db.read(sql)
+            columns=['cid' , 'pid' , 'remarks' , 'medicines' , 'next_followup' , 'created_on']
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
+            print(tabulate(rows,headers=columns,tablefmt='grid'))
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
+        
+        elif choice == 9:
+            pid =int(input("Enter patient ID:- "))
+            sql="select * from Consultation where pid ={}".format(pid)
+            rows=db.read(sql)
+            columns=['cid' , 'pid' , 'remarks' , 'medicines' , 'next_followup' , 'created_on']
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
+            print(tabulate(rows,headers=columns,tablefmt='grid'))
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
+        
+        elif choice == 10:
+            start_date =input("Enter date (yyyy-mm-dd hh:mm:ss):- ")
+            end_date =input("Enter date (yyyy-mm-dd hh:mm:ss):- ")
+            sql="select * from Consultation where next_followup>= '{}' and next_followup<='{}'".format(start_date,end_date)
+            rows=db.read(sql)
+            columns=['cid' , 'pid' , 'remarks' , 'medicines' , 'next_followup' , 'created_on']
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
+            print(tabulate(rows,headers=columns,tablefmt='grid'))
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~Viewing all customers...~~~~~~~~~~~~~~~~~~~~\n")
+
+
         elif choice == 0:
             print("Quitting the app...")
             break
