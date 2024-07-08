@@ -1,7 +1,7 @@
 from session17B import Consultation
 from session17 import Patient
 from session17A import Database
-from tabulate import tabulate  #pip install tabulate
+from tabulate import tabulate
 
 def main():
     db=Database()
