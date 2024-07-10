@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Patients - Patient Management System{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">Patients</h1>
+    <p class="lead">Manage patient records, view patient history, and update patient details.</p>
+    <hr class="my-4">
+
+    <!-- Add New Patient Form -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Add New Patient</h5>
+            <form action="/add-patient" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="history">History</label>
+                    <textarea class="form-control" id="history" name="history" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Patient</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- List of Patients -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Patient Name</h5>
+                    <p class="card-text">Age: 30</p>
+                    <p class="card-text">History: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <a href="#" class="btn btn-secondary">View / Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Patient Name</h5>
+                    <p class="card-text">Age: 25</p>
+                    <p class="card-text">History: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#" class="btn btn-secondary">View / Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Patient Name</h5>
+                    <p class="card-text">Age: 40</p>
+                    <p class="card-text">History: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <a href="#" class="btn btn-secondary">View / Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

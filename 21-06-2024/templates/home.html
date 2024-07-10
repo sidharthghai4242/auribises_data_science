@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Patient Management System{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to the Patient Management System</h1>
+    <p class="lead">{{ message }}</p>
+    <hr class="my-4">
+    <p>Get started by exploring the sections below.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Patients</h5>
+                <p class="card-text">Manage patient records, view patient history, and update patient details.</p>
+                <a href="/patients" class="btn btn-primary">Manage Patients</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Appointments</h5>
+                <p class="card-text">Schedule, view, and manage patient appointments seamlessly.</p>
+                <a href="/appointments" class="btn btn-primary">Manage Appointments</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Contact</h5>
+                <p class="card-text">Get in touch with our support team for assistance and inquiries.</p>
+                <a href="/contact" class="btn btn-primary">Contact Support</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
