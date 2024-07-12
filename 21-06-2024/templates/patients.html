@@ -12,7 +12,7 @@
     <div class="card mb-4 shadow-sm">
         <div class="card-body">
             <h5 class="card-title">Add New Patient</h5>
-            <form action="/add-patient" method="post">
+            <form action="/add-patient" method="post" id="patientForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -20,6 +20,10 @@
                 <div class="form-group">
                     <label for="age">Age</label>
                     <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
                 </div>
                 <div class="form-group">
                     <label for="history">History</label>
@@ -37,6 +41,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Patient Name</h5>
                     <p class="card-text">Age: 30</p>
+                    <p class="card-text">Phone: 123-456-7890</p>
                     <p class="card-text">History: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <a href="#" class="btn btn-secondary">View / Edit</a>
                     <a href="#" class="btn btn-danger">Delete</a>
@@ -48,6 +53,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Patient Name</h5>
                     <p class="card-text">Age: 25</p>
+                    <p class="card-text">Phone: 098-765-4321</p>
                     <p class="card-text">History: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <a href="#" class="btn btn-secondary">View / Edit</a>
                     <a href="#" class="btn btn-danger">Delete</a>
@@ -59,6 +65,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Patient Name</h5>
                     <p class="card-text">Age: 40</p>
+                    <p class="card-text">Phone: 555-555-5555</p>
                     <p class="card-text">History: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     <a href="#" class="btn btn-secondary">View / Edit</a>
                     <a href="#" class="btn btn-danger">Delete</a>
@@ -67,4 +74,14 @@
         </div>
     </div>
 </div>
+
+<!-- Popup message script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var message = "{{ message }}";
+        if (message) {
+            alert(message);
+        }
+    });
+</script>
 {% endblock %}

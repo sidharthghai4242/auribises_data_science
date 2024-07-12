@@ -9,7 +9,7 @@ web_app = Flask(__name__)
 db_users = MongoDBHelper(collection="users")
 db_patients = MongoDBHelper(collection="patients")  # Initialize a separate instance for patients
 
-@web_app.route("/")
+@web_app.route("/index")
 def index():
     return render_template('index.html')
 
@@ -17,9 +17,20 @@ def index():
 def register():
     return render_template('register.html')
 
-@web_app.route("/login")
+@web_app.route("/")
 def login():
     return render_template('login.html')
+
+@web_app.route("/view-patients")
+def ViewPatients():
+    user_data = {
+        "doctor": session.get("email"),
+    }
+    results = db_patients.fetch(query=user_data)
+    if results:
+        return render_template('viewpatients.html', patients=results)
+    else:
+        return render_template('viewpatients.html', patients=[])
 
 @web_app.route("/add-user", methods=['POST'])
 def add_user_in_db():
@@ -49,7 +60,6 @@ def fetch_user_from_db():
     }
     results = db_users.fetch(query=user_data)
     if results:
-        # Assuming only one user with this email/password exists
         result = results[0]
         session['user_id'] = str(result["_id"])
         session['name'] = result["name"]
@@ -65,16 +75,23 @@ def patients():
 @web_app.route("/add-patient", methods=['POST'])
 def add_patient_info_in_db():
     patient_info = {
+        "doctor": session["email"],
         "name": request.form["name"],
         "age": request.form["age"],
+        "phone": request.form["phone"],
         "history": request.form["history"]
     }
     result = db_patients.insert(patient_info)  # Insert into 'patients' collection
-    if result:
-        message = "Patient inserted: {}".format(result.inserted_id)
+    if result.inserted_id:
+        message = "Patient inserted successfully."
     else:
         message = "Failed to insert patient data."
-    return message
+    return redirect(url_for('show_patients', message=message))
+
+@web_app.route("/patients")
+def show_patients():
+    message = request.args.get('message')
+    return render_template("patients.html", message=message)
 
 def main():
     port = int(os.environ.get('PORT', 5000))
